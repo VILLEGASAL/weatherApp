@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="weather-app">
+        <h2>Weather App</h2>
+
+        <form action="/" method="POST">
+            <input type="text" id="city-input" placeholder="Enter city name" name="city">
+            <button id="submit-button" type="submit">Get Weather</button>
+        </form>
+
+        <% if(!locals.content){ %>
+
+            <h3>SEARCH FOR A CITY!</h3>
+
+        <% } else { %>
+
+            <div class="weather-icon">
+                <img src="http://openweathermap.org/img/w/<%= content.weather[0].icon %>.png" alt="Weather Icon">
+            </div>
+            <div class="temperature">
+                <%= content.main.temp %><sup>o</sup>C
+            </div>
+            <div class="description">
+                <h3>
+                    <%= content.name %>
+                </h3>
+                <%= content.weather[0].description.toUpperCase() %>
+            </div>
+        <% } %>
+
+        <% if(locals.error){ %>
+
+            <div class="description">
+                <%= error %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
